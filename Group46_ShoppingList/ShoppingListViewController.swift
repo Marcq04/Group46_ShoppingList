@@ -11,21 +11,15 @@ class ShoppingListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
-    @IBOutlet weak var navbar: UINavigationBar!
     
     
-    @IBOutlet weak var addbutton: UINavigationBar!
-    
-    @IBOutlet weak var totalprice: UILabel!
-    
-    
-    
-    @IBOutlet var table: UITableView!
+    @IBAction func toAddItem(_ sender: Any) {
+        performSegue(withIdentifier: "additem", sender: self)
+    }
     
     
     /*
