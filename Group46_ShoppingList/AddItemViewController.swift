@@ -13,15 +13,12 @@ class AddItemViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddCategory))
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToCustomCategory" {
-            print("Navigating to custom category")
-        }
-        
-        
+    
+    @objc func goToAddCategory(_ sender: Any) {
+        performSegue(withIdentifier: "goToAddCategory", sender: self)
     }
     
     
