@@ -13,10 +13,11 @@ class AddItemViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddCategory))
     }
     
-    @IBAction func go_to_AddCategory(_ sender: Any) {
+    
+    @objc func goToAddCategory(_ sender: Any) {
         performSegue(withIdentifier: "goToAddCategory", sender: self)
     }
     

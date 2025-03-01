@@ -17,9 +17,17 @@ class ShoppingListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddItem))
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "priceCell")
     }
 
+    
+    @objc func goToAddItem(_ sender: Any?) {
+        performSegue(withIdentifier: "goToAddItem", sender: self)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,9 +41,7 @@ class ShoppingListTableViewController: UITableViewController {
     }
     
     
-    @IBAction func go_toAddItem(_ sender: Any) {
-        performSegue(withIdentifier: "go_toAddItem", sender: self)
-    }
+    
     
     // Stupid prototype tabel cell wont shut up about "must have reuse
     // identifiers". Please remember to name the reuse identfier and
