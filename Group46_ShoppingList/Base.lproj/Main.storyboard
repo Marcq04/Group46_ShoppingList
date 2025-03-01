@@ -11,20 +11,21 @@
         <!--Shopping List-->
         <scene sceneID="vGe-ug-NDY">
             <objects>
-                <tableViewController storyboardIdentifier="ShoppingListViewController" id="qds-gh-TXp" customClass="ShoppingListViewController" customModule="Group46_ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ShoppingListViewController" id="qds-gh-TXp" customClass="ShoppingListTableViewController" customModule="Group46_ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="DLc-Tl-q8d">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Whn-Ay-clv">
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Whn-Ay-clv">
                             <rect key="frame" x="0.0" y="121.66666793823242" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <accessibility key="accessibilityConfiguration" identifier="totalPriceCell"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mec-xX-2bk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="productCell" id="mec-xX-2bk">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mec-xX-2bk" id="IKy-fX-prx">
@@ -38,7 +39,7 @@
                                                 <navigationItem title="Browse" id="3H7-BF-IJP">
                                                     <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="eeh-Ov-lFI">
                                                         <connections>
-                                                            <action selector="toAddItem:" destination="qds-gh-TXp" id="cFo-LS-V45"/>
+                                                            <action selector="go_toAddItem:" destination="qds-gh-TXp" id="Avs-zs-neK"/>
                                                             <segue destination="BYZ-38-t0r" kind="presentation" id="4RG-VW-pCk"/>
                                                         </connections>
                                                     </barButtonItem>
@@ -56,8 +57,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Shopping List" id="FBt-XG-g8B"/>
                     <connections>
-                        <outlet property="addbutton" destination="ABB-Vw-9zK" id="dJX-OL-9U5"/>
-                        <outlet property="navbar" destination="ABB-Vw-9zK" id="ch6-aG-PTc"/>
                         <outlet property="table" destination="DLc-Tl-q8d" id="Pu5-mv-t8r"/>
                         <outlet property="totalprice" destination="Whn-Ay-clv" id="MDg-xJ-QTw"/>
                     </connections>
