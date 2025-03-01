@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tf2-5z-6PD">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -36,9 +36,10 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <items>
                                                 <navigationItem title="Browse" id="3H7-BF-IJP">
-                                                    <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="eeh-Ov-lFI">
+                                                    <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="eeh-Ov-lFI">
                                                         <connections>
-                                                            <action selector="toAddItem:" destination="qds-gh-TXp" id="a67-cy-YaG"/>
+                                                            <action selector="toAddItem:" destination="qds-gh-TXp" id="cFo-LS-V45"/>
+                                                            <segue destination="BYZ-38-t0r" kind="presentation" id="4RG-VW-pCk"/>
                                                         </connections>
                                                     </barButtonItem>
                                                 </navigationItem>
@@ -86,7 +87,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddItemViewController" id="BYZ-38-t0r" customClass="AddItemViewController" customModule="Group46_ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-2I-G2X">
@@ -168,9 +169,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Browse" id="4Rd-Bm-3zD">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="fkG-PN-CRk">
+                                        <barButtonItem key="rightBarButtonItem" title="Add Category" style="done" id="fkG-PN-CRk">
                                             <connections>
-                                                <action selector="toAddItem:" destination="qds-gh-TXp" id="vGi-8e-SLr"/>
+                                                <action selector="go_to_AddCategory:" destination="BYZ-38-t0r" id="KBQ-R9-5R5"/>
+                                                <segue destination="1H6-KQ-70f" kind="presentation" id="Fxt-lO-GcB"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -183,14 +185,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-442" y="-9"/>
+            <point key="canvasLocation" x="-314" y="-15"/>
         </scene>
         <!--Add Category View Controller-->
         <scene sceneID="6mi-VO-buW">
             <objects>
                 <viewController storyboardIdentifier="AddCategoryViewController" id="1H6-KQ-70f" customClass="AddCategoryViewController" customModule="Group46_ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SA4-p3-0LZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="706-aq-yud">
@@ -288,9 +290,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Browse" id="EbB-Ef-WIb">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="KNH-XN-RgR">
+                                        <barButtonItem key="rightBarButtonItem" title="Go Back" style="done" id="KNH-XN-RgR">
+                                            <color key="tintColor" systemColor="systemRedColor"/>
                                             <connections>
-                                                <action selector="toAddItem:" destination="qds-gh-TXp" id="fZZ-fb-Y72"/>
+                                                <action selector="go_Back:" destination="1H6-KQ-70f" id="rKh-ls-5dw"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -300,10 +303,11 @@
                         <viewLayoutGuide key="safeArea" id="1pJ-R2-zKd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8xZ-P4-RSb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHC-2j-MBK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="539.69465648854964" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="540" y="-15"/>
         </scene>
     </scenes>
     <resources>
@@ -311,25 +315,25 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

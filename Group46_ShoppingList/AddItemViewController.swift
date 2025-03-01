@@ -16,12 +16,8 @@ class AddItemViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToCustomCategory" {
-            print("Navigating to custom category")
-        }
-        
-        
+    @IBAction func go_to_AddCategory(_ sender: Any) {
+        performSegue(withIdentifier: "goToAddCategory", sender: self)
     }
     
     
