@@ -9,6 +9,11 @@ import UIKit
 
 class AddItemViewController: UIViewController {
 
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var priceInput: UITextField!
+    @IBOutlet weak var dropDownButton: UIButton!
+    @IBOutlet var typeButtons: [UIButton]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +25,21 @@ class AddItemViewController: UIViewController {
     @objc func goToAddCategory(_ sender: Any) {
         performSegue(withIdentifier: "goToAddCategory", sender: self)
     }
+    
+    func showTypeButtons() {
+        typeButtons.forEach { button in button.isHidden = !button.isHidden
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func dropDownAction(_ sender: Any) {
+        showTypeButtons( )
+    }
+    
+    @IBAction func typeButtonAction(_ sender: UIButton) {
+        showTypeButtons( )
+    }
+    
     
     
     @IBAction func add_Item(_ sender: Any) {
