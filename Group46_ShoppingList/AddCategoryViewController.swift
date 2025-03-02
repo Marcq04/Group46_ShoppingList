@@ -42,7 +42,6 @@ class AddCategoryViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
         cell.textLabel?.text = categories[indexPath.row]
         
-        // Added X button to delete
         let deleteButton = UIButton(type: .system)
         deleteButton.setTitle("X", for: .normal)
         deleteButton.tag = indexPath.row
