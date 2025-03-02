@@ -7,99 +7,84 @@
 
 import UIKit
 
-class ShoppingListTableViewController: UITableViewController {
+class ShoppingListTableViewController: UITableViewController, AddItemDelegate {
+
+    var shoppingList: [(name: String, price: Double)] = [] // Store shopping list items
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddItem))
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "priceCell")
     }
 
-    
     @objc func goToAddItem(_ sender: Any?) {
         performSegue(withIdentifier: "goToAddItem", sender: self)
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table View Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1 // Ensure there's at least 1 section
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return shoppingList.count // Show the correct number of items
     }
-    
-    
-    
-    
-    // Stupid prototype tabel cell wont shut up about "must have reuse
-    // identifiers". Please remember to name the reuse identfier and
-    // not the identifier. To find it, select the table view cell and
-    // use the command + alt + 5 on your keyboard.
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath)
-
-        // Configure the cell...
-        cell.textLabel?.text = "Product \(indexPath.row + 1)"
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) // ✅ Updated Identifier
+        
+        let item = shoppingList[indexPath.row]
+        cell.textLabel?.text = "\(item.name) - $\(String(format: "%.2f", item.price))"
+        
         return cell
     }
-    
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
+    // ✅ MARK: - Enable Swipe-to-Delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            print("🗑 Deleting item: \(shoppingList[indexPath.row].name)") // Debugging
+
+            // Remove item from the shopping list
+            shoppingList.remove(at: indexPath.row)
+            
+            // Delete row from table view with animation
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    // ✅ MARK: - Alternative: Swipe Delete Button
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            print("🗑 Swipe Delete item: \(self.shoppingList[indexPath.row].name)") // Debugging
+            
+            // Remove item from array
+            self.shoppingList.remove(at: indexPath.row)
+            
+            // Delete the row from the table view
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            completionHandler(true)
+        }
+        
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+    // MARK: - Delegate Connection
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "goToAddItem",
+           let addItemVC = segue.destination as? AddItemViewController {
+            addItemVC.delegate = self
+        }
     }
-    */
 
+    // MARK: - Receive Added Item
+    func didAddItem(name: String, price: Double) {
+        print("🛒 Received item: \(name) - $\(price)") // Debugging
+
+        shoppingList.append((name, price)) // Add item to list
+        tableView.reloadData() // Refresh table view
+    }
 }
