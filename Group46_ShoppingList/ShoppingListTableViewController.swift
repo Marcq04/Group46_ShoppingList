@@ -1,4 +1,3 @@
-//
 //  ShoppingListTableViewController.swift
 //  Group46_ShoppingList
 //
@@ -7,7 +6,11 @@
 
 import UIKit
 
-class ShoppingListTableViewController: UITableViewController, AddItemDelegate {
+class ShoppingListTableViewController: UITableViewController, AddItemDelegate, AddItemToCategoryDelegate {
+    func didAddItemToCategory(itemName: String, price: Double) {
+        print("✅ Item added to category: \(itemName) - $\(price)")
+    }
+    
 
     var shoppingList: [(name: String, price: Double)] = [] // Store shopping list items
 
@@ -20,6 +23,7 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate {
     @objc func goToAddItem(_ sender: Any?) {
         performSegue(withIdentifier: "goToAddItem", sender: self)
     }
+    
     
     // MARK: - Table View Data Source
 
@@ -77,8 +81,14 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate {
         if segue.identifier == "goToAddItem",
            let addItemVC = segue.destination as? AddItemViewController {
             addItemVC.delegate = self
+        } else if segue.identifier == "goToAddCategory",
+                  let addCategoryVC = segue.destination as? AddCategoryViewController,
+                  let selectedItem = sender as? (name: String, price: Double) {
+            addCategoryVC.itemDelegate = self
+            addCategoryVC.selectedItem = selectedItem // Pass the selected item
         }
     }
+
 
     // MARK: - Receive Added Item
     func didAddItem(name: String, price: Double) {
@@ -86,5 +96,22 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate {
 
         shoppingList.append((name, price)) // Add item to list
         tableView.reloadData() // Refresh table view
+    }
+    // MARK: - goToAddCategory
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = shoppingList[indexPath.row]
+            performSegue(withIdentifier: "goToAddCategory", sender: selectedItem)
+        /*
+        let itemName = selectedItem.name
+        let itemPrice = selectedItem.price
+
+        print("🛍 Selected item: \(itemName) - $\(itemPrice)")
+
+        if let addCategoryVC = storyboard?.instantiateViewController(withIdentifier: "AddCategoryViewController") as? AddCategoryViewController {
+                addCategoryVC.itemDelegate = self
+                addCategoryVC.didAddItemToCategory(itemName: itemName, price: itemPrice) // ✅ Add item immediately
+                navigationController?.pushViewController(addCategoryVC, animated: true)
+            }
+         */
     }
 }

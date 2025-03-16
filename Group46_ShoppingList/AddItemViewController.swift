@@ -22,12 +22,8 @@ class AddItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddCategory))
     }
     
-    @objc func goToAddCategory(_ sender: Any) {
-        performSegue(withIdentifier: "goToAddCategory", sender: self)
-    }
     
     func showTypeButtons() {
         typeButtons.forEach { button in

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Whn-Ay-clv">
-                            <rect key="frame" x="0.0" y="122.33333206176758" width="393" height="44"/>
+                            <rect key="frame" x="0.0" y="121.66666793823242" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration" identifier="totalPriceCell"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
@@ -26,32 +26,11 @@
                         </label>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="productCell" id="mec-xX-2bk">
-                                <rect key="frame" x="0.0" y="50" width="393" height="44.333332061767578"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mec-xX-2bk" id="IKy-fX-prx">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABB-Vw-9zK">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.333333333333336"/>
-                                            <items>
-                                                <navigationItem title="Browse" id="3H7-BF-IJP">
-                                                    <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="eeh-Ov-lFI">
-                                                        <connections>
-                                                            <action selector="go_toAddItem:" destination="qds-gh-TXp" id="GQ5-sk-iyS"/>
-                                                            <segue destination="BYZ-38-t0r" kind="show" identifier="goToAddItem" id="XIP-Jl-nxP"/>
-                                                        </connections>
-                                                    </barButtonItem>
-                                                </navigationItem>
-                                            </items>
-                                        </navigationBar>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="top" secondItem="IKy-fX-prx" secondAttribute="topMargin" constant="-11" id="JV8-pn-Xfe"/>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="centerX" secondItem="IKy-fX-prx" secondAttribute="centerX" id="XmD-H5-b2h"/>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="leading" secondItem="IKy-fX-prx" secondAttribute="leadingMargin" constant="-20" id="cOH-Q4-rd9"/>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="centerY" secondItem="IKy-fX-prx" secondAttribute="centerY" id="wup-2H-wCh"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -60,9 +39,27 @@
                             <outlet property="delegate" destination="qds-gh-TXp" id="VhL-md-UQL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Shopping List" id="FBt-XG-g8B"/>
+                    <navigationItem key="navigationItem" title="Shopping List" id="FBt-XG-g8B">
+                        <barButtonItem key="leftBarButtonItem" title="Add Category" style="plain" id="mPe-L3-UX7">
+                            <connections>
+                                <segue destination="1H6-KQ-70f" kind="show" identifier="goToAddCategory" id="EEw-cT-VV9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="fJh-bd-U7B">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="goToAddItem" id="rvH-Kt-hMs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryi-Rl-qf2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Browse" id="3H7-BF-IJP">
+                    <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="eeh-Ov-lFI">
+                        <connections>
+                            <action selector="go_toAddItem:" destination="qds-gh-TXp" id="GQ5-sk-iyS"/>
+                        </connections>
+                    </barButtonItem>
+                </navigationItem>
             </objects>
             <point key="canvasLocation" x="-1185" y="-15"/>
         </scene>
@@ -210,13 +207,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rh-nZ-N5F">
                                 <rect key="frame" x="0.0" y="165" width="393" height="44"/>
                                 <items>
-                                    <navigationItem title="Browse" id="4Rd-Bm-3zD">
-                                        <barButtonItem key="rightBarButtonItem" title="Add Category" style="done" id="r8q-4L-f8f">
-                                            <connections>
-                                                <segue destination="1H6-KQ-70f" kind="show" identifier="goToAddCategory" id="WAF-e4-izA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Browse" id="4Rd-Bm-3zD"/>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="price..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="61u-wH-amB">
@@ -363,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHC-2j-MBK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="539.69465648854964" y="-15.492957746478874"/>
+            <point key="canvasLocation" x="-315" y="-765"/>
         </scene>
     </scenes>
     <resources>
