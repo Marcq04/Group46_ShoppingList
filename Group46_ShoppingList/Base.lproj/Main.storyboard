@@ -40,12 +40,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Shopping List" id="FBt-XG-g8B">
-                        <barButtonItem key="leftBarButtonItem" title="Add Category" style="plain" id="mPe-L3-UX7">
+                        <barButtonItem key="leftBarButtonItem" title="Add Category" style="done" id="mPe-L3-UX7">
                             <connections>
                                 <segue destination="1H6-KQ-70f" kind="show" identifier="goToAddCategory" id="EEw-cT-VV9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="fJh-bd-U7B">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="fJh-bd-U7B">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="goToAddItem" id="rvH-Kt-hMs"/>
                             </connections>

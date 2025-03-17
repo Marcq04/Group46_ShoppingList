@@ -6,11 +6,18 @@
 
 import UIKit
 
-class ShoppingListTableViewController: UITableViewController, AddItemDelegate, AddItemToCategoryDelegate {
+class ShoppingListTableViewController: UITableViewController, AddItemDelegate, AddItemToCategoryDelegate, AddCategoryDelegate {
+    
+    var categories: [String] = []
+    
+    func didUpdateCategories(_ categories: [String]) {
+        self.categories = categories
+        updateCategoryStackView()
+    }
+    
     func didAddItemToCategory(itemName: String, price: Double) {
         print("✅ Item added to category: \(itemName) - $\(price)")
     }
-    
 
     var shoppingList: [(name: String, price: Double)] = [] // Store shopping list items
 
@@ -18,6 +25,13 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate, A
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddItem))
+        view.addSubview(categoryStackView)
+            categoryStackView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                categoryStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                categoryStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                categoryStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            ])
     }
 
     @objc func goToAddItem(_ sender: Any?) {
@@ -84,8 +98,11 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate, A
         } else if segue.identifier == "goToAddCategory",
                   let addCategoryVC = segue.destination as? AddCategoryViewController,
                   let selectedItem = sender as? (name: String, price: Double) {
-            addCategoryVC.itemDelegate = self
-            addCategoryVC.selectedItem = selectedItem // Pass the selected item
+                print("📂 Passing categories: \(categories)") // Debugging
+            
+                addCategoryVC.categories = categories // ✅ Pass current categories
+                addCategoryVC.itemDelegate = self
+                addCategoryVC.selectedItem = selectedItem // Pass the selected item
         }
     }
 
@@ -113,5 +130,31 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate, A
                 navigationController?.pushViewController(addCategoryVC, animated: true)
             }
          */
+    }
+    
+    // MARK: - update category stack view
+    
+    private let categoryStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    private func updateCategoryStackView() {
+        categoryStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        for category in categories {
+            let label = UILabel()
+            label.text = category
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+            label.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+            label.layer.cornerRadius = 5
+            label.clipsToBounds = true
+            label.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            categoryStackView.addArrangedSubview(label)
+        }
     }
 }

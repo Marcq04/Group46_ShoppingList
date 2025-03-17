@@ -7,13 +7,12 @@
 import UIKit
 
 protocol AddCategoryDelegate: AnyObject {
-    func didAddCategory(_ category: String)
+    func didUpdateCategories(_ categories: [String])
 }
 
 protocol AddItemToCategoryDelegate: AnyObject {
     func didAddItemToCategory(itemName: String, price: Double)
 }
-
 
 class AddCategoryViewController: UIViewController {
     
@@ -22,39 +21,29 @@ class AddCategoryViewController: UIViewController {
     
     var categories: [String] = []
     
-    // MARK: - Add Category Delegate
-    func didAddCategory(_ category: String) {
-        categories.append(category)
-        
-    }
-    
-    
     weak var delegate: AddCategoryDelegate?
     weak var itemDelegate: AddItemToCategoryDelegate?
     var selectedItem: (name: String, price: Double)? // Store the selected item
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Check if there's a selected item, and populate the stack view
+        
+        print("📂 Categories on load: \(categories)") // Debugging
+        
         if let item = selectedItem {
             didAddItemToCategory(itemName: item.name, price: item.price)
         }
 
-        // Populate stack view with categories if any
+        // Populate stack view with existing categories
         for category in categories {
             addCategoryToScrollView(category)
         }
     }
     
     @IBAction func go_Back(_ sender: Any) {
-        // Pass the updated categories list back to the delegate
-        delegate?.didAddCategory(categories.joined(separator: ", ")) // Or send a more suitable data structure
+        delegate?.didUpdateCategories(categories) // Send updated categories list
         dismiss(animated: true, completion: nil)
     }
-
 
     @IBAction func add_Category(_ sender: Any) {
         guard let categoryName = categoryInput.text, !categoryName.isEmpty else {
@@ -62,13 +51,16 @@ class AddCategoryViewController: UIViewController {
             return
         }
 
-        print("Added category: \(categoryName)")
-        // Add new category to the data model
-        categories.append(categoryName)
-        
-        // Add new category to the ScrollView's StackView
-        addCategoryToScrollView(categoryName)
-        delegate?.didAddCategory(categoryName)
+        if !categories.contains(categoryName) {
+            categories.append(categoryName)
+            addCategoryToScrollView(categoryName)
+            delegate?.didUpdateCategories(categories) // Notify delegate with updated list
+            
+            // 🔄 Force layout update to reflect changes
+            view.layoutIfNeeded()
+        } else {
+            showAlert(message: "Category already exists.")
+        }
     }
 
     private func addCategoryToScrollView(_ categoryName: String) {
@@ -76,6 +68,8 @@ class AddCategoryViewController: UIViewController {
             print("🚨 categoryStackView is nil when trying to add a category!")
             return
         }
+
+        print("✅ Adding category to StackView: \(categoryName)") // Debugging
 
         let categoryLabel = UILabel()
         categoryLabel.text = categoryName
@@ -116,4 +110,3 @@ class AddCategoryViewController: UIViewController {
         }
     }
 }
-
