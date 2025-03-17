@@ -15,6 +15,8 @@ class AddItemViewController: UIViewController {
 
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var priceInput: UITextField!
+    @IBOutlet weak var taxLabel: UILabel! // Label for tax amount
+    @IBOutlet weak var fullPriceLabel: UILabel! // Label for full price
     @IBOutlet weak var dropDownButton: UIButton!
     @IBOutlet var typeButtons: [UIButton]!
     
@@ -22,13 +24,37 @@ class AddItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddCategory))
+        
+        // Debugging: Check if taxLabel and fullPriceLabel are nil
+        print("🔍 Debug: taxLabel is \(taxLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
+        print("🔍 Debug: fullPriceLabel is \(fullPriceLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
+
+        // Ensure tax and full price labels are set to default values
+        taxLabel?.text = "Tax: $0.00"
+        fullPriceLabel?.text = "Full Price: $0.00"
+        
+        // Add target to update price details dynamically as user types
+        priceInput.addTarget(self, action: #selector(updatePriceDetails), for: .editingChanged)
     }
     
-    @objc func goToAddCategory(_ sender: Any) {
-        performSegue(withIdentifier: "goToAddCategory", sender: self)
+    @objc func updatePriceDetails() {
+        guard let priceText = priceInput.text, let price = Double(priceText), price > 0 else {
+            taxLabel?.text = "Tax: $0.00"
+            fullPriceLabel?.text = "Full Price: $0.00"
+            return
+        }
+        
+        let taxRate = 0.13
+        let taxAmount = price * taxRate
+        let totalPrice = price + taxAmount
+        
+        print("✅ Price: \(price), Tax: \(String(format: "%.2f", taxAmount)), Full Price: \(String(format: "%.2f", totalPrice))")
+
+        // Update the labels separately
+        taxLabel?.text = "Tax: $\(String(format: "%.2f", taxAmount))"
+        fullPriceLabel?.text = "Full Price: $\(String(format: "%.2f", totalPrice))"
     }
-    
+
     func showTypeButtons() {
         typeButtons.forEach { button in
             button.isHidden = !button.isHidden
@@ -46,15 +72,19 @@ class AddItemViewController: UIViewController {
     
     @IBAction func add_Item(_ sender: Any) {
         guard let name = nameInput.text, !name.isEmpty,
-              let priceText = priceInput.text, let price = Double(priceText) else {
-            showAlert(message: "Please enter valid item details.")
+              let priceText = priceInput.text, let price = Double(priceText), price > 0 else {
+            showAlert(message: "Please enter a valid item name and price.")
             return
         }
         
-        print("✅ Adding item: \(name) - $\(price)") // Debugging
+        let taxRate = 0.13
+        let taxAmount = price * taxRate
+        let totalPrice = price + taxAmount
         
-        // Pass the data back using delegate
-        delegate?.didAddItem(name: name, price: price)
+        print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
+
+        // Pass the data back using delegate with updated total price
+        delegate?.didAddItem(name: name, price: totalPrice)
         
         // Navigate back to Shopping List screen
         navigationController?.popViewController(animated: true)

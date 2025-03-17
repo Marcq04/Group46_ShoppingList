@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Whn-Ay-clv">
-                            <rect key="frame" x="0.0" y="122.33333206176758" width="393" height="44"/>
+                            <rect key="frame" x="0.0" y="121.66666793823242" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration" identifier="totalPriceCell"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
@@ -26,32 +26,11 @@
                         </label>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="productCell" id="mec-xX-2bk">
-                                <rect key="frame" x="0.0" y="50" width="393" height="44.333332061767578"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mec-xX-2bk" id="IKy-fX-prx">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABB-Vw-9zK">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.333333333333336"/>
-                                            <items>
-                                                <navigationItem title="Browse" id="3H7-BF-IJP">
-                                                    <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="eeh-Ov-lFI">
-                                                        <connections>
-                                                            <action selector="go_toAddItem:" destination="qds-gh-TXp" id="GQ5-sk-iyS"/>
-                                                            <segue destination="BYZ-38-t0r" kind="show" identifier="goToAddItem" id="XIP-Jl-nxP"/>
-                                                        </connections>
-                                                    </barButtonItem>
-                                                </navigationItem>
-                                            </items>
-                                        </navigationBar>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="top" secondItem="IKy-fX-prx" secondAttribute="topMargin" constant="-11" id="JV8-pn-Xfe"/>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="centerX" secondItem="IKy-fX-prx" secondAttribute="centerX" id="XmD-H5-b2h"/>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="leading" secondItem="IKy-fX-prx" secondAttribute="leadingMargin" constant="-20" id="cOH-Q4-rd9"/>
-                                        <constraint firstItem="ABB-Vw-9zK" firstAttribute="centerY" secondItem="IKy-fX-prx" secondAttribute="centerY" id="wup-2H-wCh"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -60,9 +39,27 @@
                             <outlet property="delegate" destination="qds-gh-TXp" id="VhL-md-UQL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Shopping List" id="FBt-XG-g8B"/>
+                    <navigationItem key="navigationItem" title="Shopping List" id="FBt-XG-g8B">
+                        <barButtonItem key="leftBarButtonItem" title="Add Category" style="done" id="mPe-L3-UX7">
+                            <connections>
+                                <segue destination="1H6-KQ-70f" kind="show" identifier="goToAddCategory" id="EEw-cT-VV9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="fJh-bd-U7B">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="goToAddItem" id="rvH-Kt-hMs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryi-Rl-qf2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Browse" id="3H7-BF-IJP">
+                    <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="eeh-Ov-lFI">
+                        <connections>
+                            <action selector="go_toAddItem:" destination="qds-gh-TXp" id="GQ5-sk-iyS"/>
+                        </connections>
+                    </barButtonItem>
+                </navigationItem>
             </objects>
             <point key="canvasLocation" x="-1185" y="-15"/>
         </scene>
@@ -116,18 +113,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-lj-cbi">
-                                <rect key="frame" x="0.0" y="483.33333333333331" width="393" height="49.333333333333314"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Full Price:">
-                                        <attributes>
-                                            <font key="NSFont" size="36" name="AvenirNext-BoldItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48f-i5-Rtn">
@@ -210,13 +195,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rh-nZ-N5F">
                                 <rect key="frame" x="0.0" y="165" width="393" height="44"/>
                                 <items>
-                                    <navigationItem title="Browse" id="4Rd-Bm-3zD">
-                                        <barButtonItem key="rightBarButtonItem" title="Add Category" style="done" id="r8q-4L-f8f">
-                                            <connections>
-                                                <segue destination="1H6-KQ-70f" kind="show" identifier="goToAddCategory" id="WAF-e4-izA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Browse" id="4Rd-Bm-3zD"/>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="price..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="61u-wH-amB">
@@ -225,6 +204,228 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm1-5I-ZyB">
+                                <rect key="frame" x="93" y="439" width="124" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <mutableString key="text">+ 0.13% of price
+//  AddItemViewController.swift
+//  Group46_ShoppingList
+//
+//  Created by Marcus Quitiquit on 2025-02-15.
+//
+
+import UIKit
+
+protocol AddItemDelegate: AnyObject {
+    func didAddItem(name: String, price: Double)
+}
+
+class AddItemViewController: UIViewController {
+
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var priceInput: UITextField!
+    @IBOutlet weak var taxLabel: UILabel! // Label for tax amount
+    @IBOutlet weak var fullPriceLabel: UILabel! // Label for full price
+    @IBOutlet weak var dropDownButton: UIButton!
+    @IBOutlet var typeButtons: [UIButton]!
+    
+    weak var delegate: AddItemDelegate?  // Delegate to pass data back
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Debugging: Check if taxLabel and fullPriceLabel are nil
+        print("🔍 Debug: taxLabel is \(taxLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
+        print("🔍 Debug: fullPriceLabel is \(fullPriceLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
+
+        // Ensure tax and full price labels are set to default values
+        taxLabel?.text = "Tax: $0.00"
+        fullPriceLabel?.text = "Full Price: $0.00"
+        
+        // Add target to update price details dynamically as user types
+        priceInput.addTarget(self, action: #selector(updatePriceDetails), for: .editingChanged)
+    }
+    
+    @objc func updatePriceDetails() {
+        guard let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
+            taxLabel?.text = "Tax: $0.00"
+            fullPriceLabel?.text = "Full Price: $0.00"
+            return
+        }
+        
+        let taxRate = 0.13
+        let taxAmount = price * taxRate
+        let totalPrice = price + taxAmount
+        
+        print("✅ Price: \(price), Tax: \(String(format: "%.2f", taxAmount)), Full Price: \(String(format: "%.2f", totalPrice))")
+
+        // Update the labels separately
+        taxLabel?.text = "Tax: $\(String(format: "%.2f", taxAmount))"
+        fullPriceLabel?.text = "Full Price: $\(String(format: "%.2f", totalPrice))"
+    }
+
+    func showTypeButtons() {
+        typeButtons.forEach { button in
+            button.isHidden = !button.isHidden
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func dropDownAction(_ sender: Any) {
+        showTypeButtons()
+    }
+    
+    @IBAction func typeButtonAction(_ sender: UIButton) {
+        showTypeButtons()
+    }
+    
+    @IBAction func add_Item(_ sender: Any) {
+        guard let name = nameInput.text, !name.isEmpty,
+              let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
+            showAlert(message: "Please enter a valid item name and price.")
+            return
+        }
+        
+        let taxRate = 0.13
+        let taxAmount = price * taxRate
+        let totalPrice = price + taxAmount
+        
+        print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
+
+        // Pass the data back using delegate with updated total price
+        delegate?.didAddItem(name: name, price: totalPrice)
+        
+        // Navigate back to Shopping List screen
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+
+//  AddItemViewController.swift
+//  Group46_ShoppingList
+//
+//  Created by Marcus Quitiquit on 2025-02-15.
+//
+
+import UIKit
+
+protocol AddItemDelegate: AnyObject {
+    func didAddItem(name: String, price: Double)
+}
+
+class AddItemViewController: UIViewController {
+
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var priceInput: UITextField!
+    @IBOutlet weak var taxLabel: UILabel! // Label for tax amount
+    @IBOutlet weak var fullPriceLabel: UILabel! // Label for full price
+    @IBOutlet weak var dropDownButton: UIButton!
+    @IBOutlet var typeButtons: [UIButton]!
+    
+    weak var delegate: AddItemDelegate?  // Delegate to pass data back
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Debugging: Check if taxLabel and fullPriceLabel are nil
+        print("🔍 Debug: taxLabel is \(taxLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
+        print("🔍 Debug: fullPriceLabel is \(fullPriceLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
+
+        // Ensure tax and full price labels are set to default values
+        taxLabel?.text = "Tax: $0.00"
+        fullPriceLabel?.text = "Full Price: $0.00"
+        
+        // Add target to update price details dynamically as user types
+        priceInput.addTarget(self, action: #selector(updatePriceDetails), for: .editingChanged)
+    }
+    
+    @objc func updatePriceDetails() {
+        guard let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
+            taxLabel?.text = "Tax: $0.00"
+            fullPriceLabel?.text = "Full Price: $0.00"
+            return
+        }
+        
+        let taxRate = 0.13
+        let taxAmount = price * taxRate
+        let totalPrice = price + taxAmount
+        
+        print("✅ Price: \(price), Tax: \(String(format: "%.2f", taxAmount)), Full Price: \(String(format: "%.2f", totalPrice))")
+
+        // Update the labels separately
+        taxLabel?.text = "Tax: $\(String(format: "%.2f", taxAmount))"
+        fullPriceLabel?.text = "Full Price: $\(String(format: "%.2f", totalPrice))"
+    }
+
+    func showTypeButtons() {
+        typeButtons.forEach { button in
+            button.isHidden = !button.isHidden
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func dropDownAction(_ sender: Any) {
+        showTypeButtons()
+    }
+    
+    @IBAction func typeButtonAction(_ sender: UIButton) {
+        showTypeButtons()
+    }
+    
+    @IBAction func add_Item(_ sender: Any) {
+        guard let name = nameInput.text, !name.isEmpty,
+              let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
+            showAlert(message: "Please enter a valid item name and price.")
+            return
+        }
+        
+        let taxRate = 0.13
+        let taxAmount = price * taxRate
+        let totalPrice = price + taxAmount
+        
+        print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
+
+        // Pass the data back using delegate with updated total price
+        delegate?.didAddItem(name: name, price: totalPrice)
+        
+        // Navigate back to Shopping List screen
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+}
+sas</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price + 0.13% of price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92e-Jg-ZPE">
+                                <rect key="frame" x="190" y="497" width="167" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-lj-cbi">
+                                <rect key="frame" x="0.0" y="483.33333333333331" width="393" height="49.333333333333314"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Full Price:">
+                                        <attributes>
+                                            <font key="NSFont" size="36" name="AvenirNext-BoldItalic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -363,7 +564,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHC-2j-MBK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="539.69465648854964" y="-15.492957746478874"/>
+            <point key="canvasLocation" x="-315" y="-765"/>
         </scene>
     </scenes>
     <resources>

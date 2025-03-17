@@ -1,7 +1,17 @@
+//  AddCategoryViewController.swift
+//  Group46_ShoppingList
+//
+//  Created by Marcus Quitiquit on 2025-02-28.
+//
+
 import UIKit
 
 protocol AddCategoryDelegate: AnyObject {
-    func didAddCategory(_ category: String)
+    func didUpdateCategories(_ categories: [String])
+}
+
+protocol AddItemToCategoryDelegate: AnyObject {
+    func didAddItemToCategory(itemName: String, price: Double)
 }
 
 class AddCategoryViewController: UIViewController {
@@ -9,13 +19,29 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var categoryInput: UITextField!
     @IBOutlet weak var categoryStackView: UIStackView! // Reference to StackView inside UIScrollView
     
+    var categories: [String] = []
+    
     weak var delegate: AddCategoryDelegate?
-
+    weak var itemDelegate: AddItemToCategoryDelegate?
+    var selectedItem: (name: String, price: Double)? // Store the selected item
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+        
+        print("📂 Categories on load: \(categories)") // Debugging
+        
+        if let item = selectedItem {
+            didAddItemToCategory(itemName: item.name, price: item.price)
+        }
 
+        // Populate stack view with existing categories
+        for category in categories {
+            addCategoryToScrollView(category)
+        }
+    }
+    
     @IBAction func go_Back(_ sender: Any) {
+        delegate?.didUpdateCategories(categories) // Send updated categories list
         dismiss(animated: true, completion: nil)
     }
 
@@ -25,15 +51,26 @@ class AddCategoryViewController: UIViewController {
             return
         }
 
-        print("Added category: \(categoryName)")
-        
-        // Add new category to the ScrollView's StackView
-        addCategoryToScrollView(categoryName)
-        
-        delegate?.didAddCategory(categoryName)
+        if !categories.contains(categoryName) {
+            categories.append(categoryName)
+            addCategoryToScrollView(categoryName)
+            delegate?.didUpdateCategories(categories) // Notify delegate with updated list
+            
+            // 🔄 Force layout update to reflect changes
+            view.layoutIfNeeded()
+        } else {
+            showAlert(message: "Category already exists.")
+        }
     }
 
     private func addCategoryToScrollView(_ categoryName: String) {
+        guard let stackView = categoryStackView else {
+            print("🚨 categoryStackView is nil when trying to add a category!")
+            return
+        }
+
+        print("✅ Adding category to StackView: \(categoryName)") // Debugging
+
         let categoryLabel = UILabel()
         categoryLabel.text = categoryName
         categoryLabel.textAlignment = .center
@@ -42,8 +79,8 @@ class AddCategoryViewController: UIViewController {
         categoryLabel.layer.cornerRadius = 5
         categoryLabel.clipsToBounds = true
         categoryLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        categoryStackView.addArrangedSubview(categoryLabel) // Add label to StackView
+
+        stackView.addArrangedSubview(categoryLabel)
     }
 
     private func showAlert(message: String) {
@@ -51,5 +88,25 @@ class AddCategoryViewController: UIViewController {
         let alertAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(alertAction)
         present(alertController, animated: true)
+    }
+
+    func didAddItemToCategory(itemName: String, price: Double) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, let stackView = self.categoryStackView else {
+                print("🚨 categoryStackView is nil or ViewController was dismissed!")
+                return
+            }
+
+            let itemLabel = UILabel()
+            itemLabel.text = "\(itemName) - $\(String(format: "%.2f", price))"
+            itemLabel.textAlignment = .center
+            itemLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+            itemLabel.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.3)
+            itemLabel.layer.cornerRadius = 5
+            itemLabel.clipsToBounds = true
+            itemLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+            stackView.addArrangedSubview(itemLabel)
+        }
     }
 }
