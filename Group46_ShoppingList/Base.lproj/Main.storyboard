@@ -169,6 +169,33 @@
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1w-Mb-a9i"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0n-42-ImQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Vegetables"/>
+                                        <connections>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pac-9l-IXy"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrj-q6-asf">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <color key="tintColor" systemColor="systemBrownColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Drinks"/>
+                                        <connections>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2e4-QG-jKR"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbx-wa-gMB">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Dairy"/>
+                                        <connections>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8zV-Gs-iTX"/>
+                                        </connections>
+                                    </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWY-rg-SC2">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemYellowColor"/>
@@ -176,6 +203,15 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Bakery"/>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8RL-UX-QKB"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaO-f0-98F">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Snacks"/>
+                                        <connections>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="igB-H6-Nff"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdA-8I-iv4">
@@ -207,7 +243,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm1-5I-ZyB">
                                 <rect key="frame" x="93" y="439" width="124" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <mutableString key="text">+ 0.13% of price
+                                <string key="text">+ 0.13% of price
 //  AddItemViewController.swift
 //  Group46_ShoppingList
 //
@@ -402,7 +438,7 @@ class AddItemViewController: UIViewController {
         present(alert, animated: true)
     }
 }
-sas</mutableString>
+sas</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -474,6 +510,10 @@ sas</mutableString>
                         <outletCollection property="typeButtons" destination="857-x5-JQp" collectionClass="NSMutableArray" id="AEh-Iv-pfZ"/>
                         <outletCollection property="typeButtons" destination="dWY-rg-SC2" collectionClass="NSMutableArray" id="kW2-cg-oWw"/>
                         <outletCollection property="typeButtons" destination="IdA-8I-iv4" collectionClass="NSMutableArray" id="7B4-7B-QY6"/>
+                        <outletCollection property="typeButtons" destination="mbx-wa-gMB" collectionClass="NSMutableArray" id="lSb-YC-Nj3"/>
+                        <outletCollection property="typeButtons" destination="yrj-q6-asf" collectionClass="NSMutableArray" id="3Po-TC-zmt"/>
+                        <outletCollection property="typeButtons" destination="h0n-42-ImQ" collectionClass="NSMutableArray" id="QoQ-o6-u6E"/>
+                        <outletCollection property="typeButtons" destination="JaO-f0-98F" collectionClass="NSMutableArray" id="hUz-4v-mIr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -578,11 +618,20 @@ sas</mutableString>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
