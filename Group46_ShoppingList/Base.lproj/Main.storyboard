@@ -164,7 +164,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Meat"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Meat"/>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1w-Mb-a9i"/>
                                         </connections>
@@ -173,7 +177,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemGreenColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Vegetables"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Vegetables"/>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pac-9l-IXy"/>
                                         </connections>
@@ -182,16 +190,33 @@
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemBrownColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Drinks"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Drinks">
+                                                    <attributes>
+                                                        <font key="NSFont" size="12" name="Helvetica"/>
+                                                        <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2e4-QG-jKR"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbx-wa-gMB">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbx-wa-gMB">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Dairy"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Dairy">
+                                                    <attributes>
+                                                        <font key="NSFont" size="12" name="Helvetica"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8zV-Gs-iTX"/>
                                         </connections>
@@ -200,7 +225,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Bakery"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Bakery"/>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8RL-UX-QKB"/>
                                         </connections>
@@ -209,7 +238,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Snacks"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Snacks"/>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="igB-H6-Nff"/>
                                         </connections>
@@ -218,7 +251,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Frozen Foods"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Frozen Foods"/>
+                                            </attributedString>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pPL-p2-wSw"/>
                                         </connections>
