@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddItemDelegate: AnyObject {
-    func didAddItem(name: String, price: Double)
+    func didAddItem(name: String, price: Double, category: String) // Add category
 }
 
 class AddItemViewController: UIViewController {
@@ -19,7 +19,7 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var fullPriceLabel: UILabel!
     @IBOutlet weak var dropDownButton: UIButton!
     @IBOutlet var typeButtons: [UIButton]!
-
+    
     weak var delegate: AddItemDelegate?
 
     var selectedCategory: String?
@@ -73,7 +73,7 @@ class AddItemViewController: UIViewController {
         updateDropDownButton()
         showTypeButtons()
         print("✅ typeButtonAction called. Selected category: \(selectedCategory ?? "Unknown")")
-        showCategorySelectedAlert() // Add this line
+        showCategorySelectedAlert()
     }
 
     @IBAction func add_Item(_ sender: Any) {
@@ -89,7 +89,7 @@ class AddItemViewController: UIViewController {
 
         print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
 
-        delegate?.didAddItem(name: name, price: totalPrice)
+        delegate?.didAddItem(name: name, price: totalPrice, category: selectedCategory ?? "Category") // Pass category
         navigationController?.popViewController(animated: true)
     }
 
@@ -99,6 +99,21 @@ class AddItemViewController: UIViewController {
         present(alert, animated: true)
     }
 
+    @IBAction func Meat(_ sender: UIButton) {
+    }
+    @IBAction func Vegetables(_ sender: UIButton) {
+    }
+    @IBAction func Drinks(_ sender: UIButton) {
+    }
+    @IBAction func Dairy(_ sender: UIButton) {
+    }
+    @IBAction func Bakery(_ sender: UIButton) {
+    }
+    @IBAction func Snacks(_ sender: UIButton) {
+    }
+    @IBAction func FrozenFoods(_ sender: UIButton) {
+    }
+    
     private func updateDropDownButton() {
         print("✅ updateDropDownButton called. Selected category: \(selectedCategory ?? "nil")")
         dropDownButton.setTitle(selectedCategory ?? "Select Category", for: .normal)
@@ -110,7 +125,7 @@ class AddItemViewController: UIViewController {
             case "Vegetables":
                 dropDownButton.backgroundColor = UIColor.green
             case "Drinks":
-                dropDownButton.backgroundColor = UIColor.gray
+                dropDownButton.backgroundColor = UIColor.lightGray
             case "Dairy":
                 dropDownButton.backgroundColor = UIColor.brown
             case "Bakery":
@@ -127,8 +142,8 @@ class AddItemViewController: UIViewController {
         }
     }
 
-    private func showCategorySelectedAlert() { // Add this function
-        let alert = UIAlertController(title: "Category Selected", message: "Category successfully selected!", preferredStyle: .alert)
+    private func showCategorySelectedAlert() {
+        let alert = UIAlertController(title: "Category Selected", message: "Category '\(selectedCategory ?? "Unknown")' successfully selected!", preferredStyle: .alert) // Modified
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }

@@ -160,103 +160,90 @@
                                             <action selector="dropDownAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Upt-oH-3zd"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="857-x5-JQp">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeN-Qj-9f7">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Meat"/>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Meat">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                        </state>
                                         <connections>
-                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1w-Mb-a9i"/>
+                                            <action selector="Meat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aTy-cf-kdH"/>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lx4-Nm-6H6"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0n-42-ImQ">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemGreenColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Vegetables"/>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Vegetables">
+                                            <color key="titleColor" systemColor="systemGreenColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="Vegetables:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3y9-5A-OLS"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pac-9l-IXy"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrj-q6-asf">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                         <color key="tintColor" systemColor="systemBrownColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Drinks">
-                                                    <attributes>
-                                                        <font key="NSFont" size="12" name="Helvetica"/>
-                                                        <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Drinks">
+                                            <color key="titleColor" systemColor="systemBrownColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="Drinks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1V9-bt-0Vq"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2e4-QG-jKR"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbx-wa-gMB">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                         <color key="tintColor" systemColor="systemGrayColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Dairy">
-                                                    <attributes>
-                                                        <font key="NSFont" size="12" name="Helvetica"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Dairy">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="Dairy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4aG-mI-FlA"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8zV-Gs-iTX"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWY-rg-SC2">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemYellowColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Bakery"/>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Bakery">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="Bakery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LqV-FL-KNe"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8RL-UX-QKB"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaO-f0-98F">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Snacks"/>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Snacks">
+                                            <color key="titleColor" systemColor="systemYellowColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="Snacks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FjI-aW-qHV"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="igB-H6-Nff"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdA-8I-iv4">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemBlueColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Frozen Foods"/>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Frozen Foods">
+                                            <color key="titleColor" systemColor="linkColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="FrozenFoods:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zOz-wb-FrT"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pPL-p2-wSw"/>
                                         </connections>
                                     </button>
@@ -544,13 +531,13 @@ sas</string>
                         <outlet property="dropDownButton" destination="CGK-mp-Vh7" id="Zcm-kQ-lTA"/>
                         <outlet property="nameInput" destination="J1W-kz-ZrQ" id="Ohz-VM-SQx"/>
                         <outlet property="priceInput" destination="61u-wH-amB" id="exi-FI-o2u"/>
-                        <outletCollection property="typeButtons" destination="857-x5-JQp" collectionClass="NSMutableArray" id="AEh-Iv-pfZ"/>
                         <outletCollection property="typeButtons" destination="dWY-rg-SC2" collectionClass="NSMutableArray" id="kW2-cg-oWw"/>
                         <outletCollection property="typeButtons" destination="IdA-8I-iv4" collectionClass="NSMutableArray" id="7B4-7B-QY6"/>
                         <outletCollection property="typeButtons" destination="mbx-wa-gMB" collectionClass="NSMutableArray" id="lSb-YC-Nj3"/>
                         <outletCollection property="typeButtons" destination="yrj-q6-asf" collectionClass="NSMutableArray" id="3Po-TC-zmt"/>
                         <outletCollection property="typeButtons" destination="h0n-42-ImQ" collectionClass="NSMutableArray" id="QoQ-o6-u6E"/>
                         <outletCollection property="typeButtons" destination="JaO-f0-98F" collectionClass="NSMutableArray" id="hUz-4v-mIr"/>
+                        <outletCollection property="typeButtons" destination="qeN-Qj-9f7" collectionClass="NSMutableArray" id="8s1-cT-6H8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -646,32 +633,38 @@ sas</string>
     </scenes>
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
