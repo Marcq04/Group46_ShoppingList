@@ -9,32 +9,33 @@ import UIKit
 
 class ShoppingListViewController: UITableViewController, AddItemDelegate {
 
-    var shoppingList: [(name: String, price: Double)] = [] // Stores shopping list items
+    var shoppingList: [(name: String, price: Double, category: String?)] = [] // Added category
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    // Update the table view to display the added items
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shoppingList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath)
-        
+
         let item = shoppingList[indexPath.row]
-        cell.textLabel?.text = "\(item.name) - $\(String(format: "%.2f", item.price))"
-        
+        if let category = item.category {
+            cell.textLabel?.text = "\(item.name) - $\(String(format: "%.2f", item.price)) - \(category)"
+        } else {
+            cell.textLabel?.text = "\(item.name) - $\(String(format: "%.2f", item.price))"
+        }
+
         return cell
     }
 
-    // Perform Segue to AddItemViewController
     @IBAction func toAddItem(_ sender: Any) {
         performSegue(withIdentifier: "additem", sender: self)
     }
 
-    // Pass the delegate to AddItemViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "additem",
            let addItemVC = segue.destination as? AddItemViewController {
@@ -42,11 +43,9 @@ class ShoppingListViewController: UITableViewController, AddItemDelegate {
         }
     }
 
-    // Receive the added item from AddItemViewController
-    func didAddItem(name: String, price: Double) {
-        print("🛒 Received item: \(name) - $\(price)") // Debugging
-
-        shoppingList.append((name, price))
-        tableView.reloadData() // Refresh the table view
+    func didAddItem(name: String, price: Double, category: String) { // Added category
+        print("🛒 Received item: \(name) - $\(price) - Category: \(category)")
+        shoppingList.append((name, price, category))
+        tableView.reloadData()
     }
 }
