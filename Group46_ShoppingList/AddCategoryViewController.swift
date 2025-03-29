@@ -11,7 +11,7 @@ protocol AddCategoryDelegate: AnyObject {
 }
 
 protocol AddItemToCategoryDelegate: AnyObject {
-    func didAddItemToCategory(itemName: String, price: Double)
+    func didAddItemToCategory(itemName: String, price: Double, category: String)
 }
 
 class AddCategoryViewController: UIViewController {
@@ -27,14 +27,18 @@ class AddCategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("📂 Categories on load: \(categories)") // Debugging
-        
+
+        // 🧠 Load saved categories if available
+        if let saved = UserDefaults.standard.stringArray(forKey: "savedCategories") {
+            categories = saved
+        }
+
+        print("📂 Categories on load: \(categories)")
+
         if let item = selectedItem {
             didAddItemToCategory(itemName: item.name, price: item.price)
         }
 
-        // Populate stack view with existing categories
         for category in categories {
             addCategoryToScrollView(category)
         }
@@ -54,9 +58,11 @@ class AddCategoryViewController: UIViewController {
         if !categories.contains(categoryName) {
             categories.append(categoryName)
             addCategoryToScrollView(categoryName)
-            delegate?.didUpdateCategories(categories) // Notify delegate with updated list
+            delegate?.didUpdateCategories(categories)
+
+            // 🔒 Save to UserDefaults
+            UserDefaults.standard.set(categories, forKey: "savedCategories")
             
-            // 🔄 Force layout update to reflect changes
             view.layoutIfNeeded()
         } else {
             showAlert(message: "Category already exists.")

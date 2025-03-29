@@ -264,216 +264,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm1-5I-ZyB">
-                                <rect key="frame" x="93" y="439" width="124" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">+ 0.13% of price
-//  AddItemViewController.swift
-//  Group46_ShoppingList
-//
-//  Created by Marcus Quitiquit on 2025-02-15.
-//
-
-import UIKit
-
-protocol AddItemDelegate: AnyObject {
-    func didAddItem(name: String, price: Double)
-}
-
-class AddItemViewController: UIViewController {
-
-    @IBOutlet weak var nameInput: UITextField!
-    @IBOutlet weak var priceInput: UITextField!
-    @IBOutlet weak var taxLabel: UILabel! // Label for tax amount
-    @IBOutlet weak var fullPriceLabel: UILabel! // Label for full price
-    @IBOutlet weak var dropDownButton: UIButton!
-    @IBOutlet var typeButtons: [UIButton]!
-    
-    weak var delegate: AddItemDelegate?  // Delegate to pass data back
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Debugging: Check if taxLabel and fullPriceLabel are nil
-        print("🔍 Debug: taxLabel is \(taxLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-        print("🔍 Debug: fullPriceLabel is \(fullPriceLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-
-        // Ensure tax and full price labels are set to default values
-        taxLabel?.text = "Tax: $0.00"
-        fullPriceLabel?.text = "Full Price: $0.00"
-        
-        // Add target to update price details dynamically as user types
-        priceInput.addTarget(self, action: #selector(updatePriceDetails), for: .editingChanged)
-    }
-    
-    @objc func updatePriceDetails() {
-        guard let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            taxLabel?.text = "Tax: $0.00"
-            fullPriceLabel?.text = "Full Price: $0.00"
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Price: \(price), Tax: \(String(format: "%.2f", taxAmount)), Full Price: \(String(format: "%.2f", totalPrice))")
-
-        // Update the labels separately
-        taxLabel?.text = "Tax: $\(String(format: "%.2f", taxAmount))"
-        fullPriceLabel?.text = "Full Price: $\(String(format: "%.2f", totalPrice))"
-    }
-
-    func showTypeButtons() {
-        typeButtons.forEach { button in
-            button.isHidden = !button.isHidden
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func dropDownAction(_ sender: Any) {
-        showTypeButtons()
-    }
-    
-    @IBAction func typeButtonAction(_ sender: UIButton) {
-        showTypeButtons()
-    }
-    
-    @IBAction func add_Item(_ sender: Any) {
-        guard let name = nameInput.text, !name.isEmpty,
-              let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            showAlert(message: "Please enter a valid item name and price.")
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
-
-        // Pass the data back using delegate with updated total price
-        delegate?.didAddItem(name: name, price: totalPrice)
-        
-        // Navigate back to Shopping List screen
-        navigationController?.popViewController(animated: true)
-    }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-
-//  AddItemViewController.swift
-//  Group46_ShoppingList
-//
-//  Created by Marcus Quitiquit on 2025-02-15.
-//
-
-import UIKit
-
-protocol AddItemDelegate: AnyObject {
-    func didAddItem(name: String, price: Double)
-}
-
-class AddItemViewController: UIViewController {
-
-    @IBOutlet weak var nameInput: UITextField!
-    @IBOutlet weak var priceInput: UITextField!
-    @IBOutlet weak var taxLabel: UILabel! // Label for tax amount
-    @IBOutlet weak var fullPriceLabel: UILabel! // Label for full price
-    @IBOutlet weak var dropDownButton: UIButton!
-    @IBOutlet var typeButtons: [UIButton]!
-    
-    weak var delegate: AddItemDelegate?  // Delegate to pass data back
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Debugging: Check if taxLabel and fullPriceLabel are nil
-        print("🔍 Debug: taxLabel is \(taxLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-        print("🔍 Debug: fullPriceLabel is \(fullPriceLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-
-        // Ensure tax and full price labels are set to default values
-        taxLabel?.text = "Tax: $0.00"
-        fullPriceLabel?.text = "Full Price: $0.00"
-        
-        // Add target to update price details dynamically as user types
-        priceInput.addTarget(self, action: #selector(updatePriceDetails), for: .editingChanged)
-    }
-    
-    @objc func updatePriceDetails() {
-        guard let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            taxLabel?.text = "Tax: $0.00"
-            fullPriceLabel?.text = "Full Price: $0.00"
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Price: \(price), Tax: \(String(format: "%.2f", taxAmount)), Full Price: \(String(format: "%.2f", totalPrice))")
-
-        // Update the labels separately
-        taxLabel?.text = "Tax: $\(String(format: "%.2f", taxAmount))"
-        fullPriceLabel?.text = "Full Price: $\(String(format: "%.2f", totalPrice))"
-    }
-
-    func showTypeButtons() {
-        typeButtons.forEach { button in
-            button.isHidden = !button.isHidden
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func dropDownAction(_ sender: Any) {
-        showTypeButtons()
-    }
-    
-    @IBAction func typeButtonAction(_ sender: UIButton) {
-        showTypeButtons()
-    }
-    
-    @IBAction func add_Item(_ sender: Any) {
-        guard let name = nameInput.text, !name.isEmpty,
-              let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            showAlert(message: "Please enter a valid item name and price.")
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
-
-        // Pass the data back using delegate with updated total price
-        delegate?.didAddItem(name: name, price: totalPrice)
-        
-        // Navigate back to Shopping List screen
-        navigationController?.popViewController(animated: true)
-    }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-}
-sas</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price + 0.13% of price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92e-Jg-ZPE">
-                                <rect key="frame" x="190" y="497" width="167" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-lj-cbi">
                                 <rect key="frame" x="0.0" y="483.33333333333331" width="393" height="49.333333333333314"/>
                                 <attributedString key="attributedText">
@@ -634,37 +424,37 @@ sas</string>
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
