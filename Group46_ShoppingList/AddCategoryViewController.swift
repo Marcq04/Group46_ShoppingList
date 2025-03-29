@@ -85,6 +85,11 @@ class AddCategoryViewController: UIViewController {
         categoryLabel.layer.cornerRadius = 5
         categoryLabel.clipsToBounds = true
         categoryLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        categoryLabel.isUserInteractionEnabled = true // Enable taps
+
+        // 👇 Add Tap Gesture for deleting
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCategoryTap(_:)))
+        categoryLabel.addGestureRecognizer(tapGesture)
 
         stackView.addArrangedSubview(categoryLabel)
     }
@@ -114,5 +119,36 @@ class AddCategoryViewController: UIViewController {
 
             stackView.addArrangedSubview(itemLabel)
         }
+    }
+    
+    @objc private func handleCategoryTap(_ gesture: UITapGestureRecognizer) {
+        guard let label = gesture.view as? UILabel,
+              let categoryName = label.text else { return }
+
+        let alert = UIAlertController(
+            title: "Delete Category",
+            message: "Are you sure you want to delete \"\(categoryName)\"?",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            // 🧹 Remove from UI
+            self.categoryStackView.removeArrangedSubview(label)
+            label.removeFromSuperview()
+
+            // 🧠 Remove from array
+            if let index = self.categories.firstIndex(of: categoryName) {
+                self.categories.remove(at: index)
+            }
+
+            // 💾 Update UserDefaults
+            UserDefaults.standard.set(self.categories, forKey: "savedCategories")
+            
+            // 🔁 Inform delegate (if needed)
+            self.delegate?.didUpdateCategories(self.categories)
+        }))
+
+        present(alert, animated: true)
     }
 }
