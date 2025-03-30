@@ -15,8 +15,12 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate, A
         updateCategoryStackView()
     }
 
-    func didAddItemToCategory(itemName: String, price: Double) {
-        print("✅ Item added to category: \(itemName) - $\(price)")
+    func didAddItemToCategory(itemName: String, price: Double, category: String) {
+        if let index = shoppingList.firstIndex(where: { $0.name == itemName && $0.price == price }) {
+            shoppingList[index].category = category
+            print("✅ Item updated with category: \(shoppingList[index])")
+            tableView.reloadData()
+        }
     }
 
     var shoppingList: [(name: String, price: Double, category: String?)] = [] // Added category
