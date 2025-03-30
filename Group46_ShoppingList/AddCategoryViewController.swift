@@ -72,20 +72,12 @@ class AddCategoryViewController: UIViewController {
     }
 
     func addCategoryToScrollView(_ categoryName: String) {
-        let categoryView = UIStackView()
-        categoryView.axis = .vertical
-        categoryView.spacing = 4
-        categoryView.alignment = .fill
-        categoryView.distribution = .fill
-
-        // Horizontal container for label + buttons
         let horizontalStack = UIStackView()
         horizontalStack.axis = .horizontal
         horizontalStack.spacing = 8
         horizontalStack.alignment = .center
         horizontalStack.distribution = .fill
 
-        // 🏷 Category Label
         let categoryLabel = UILabel()
         categoryLabel.text = categoryName
         categoryLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -96,29 +88,27 @@ class AddCategoryViewController: UIViewController {
         categoryLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         categoryLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
-        // 📦 StackView Buttons
-        let deleteButton = UIButton(type: .system)
-        deleteButton.setTitle("🗑", for: .normal)
-        deleteButton.addTarget(self, action: #selector(handleDeleteCategory(_:)), for: .touchUpInside)
-
+        // Buttons
         let upButton = UIButton(type: .system)
         upButton.setTitle("⬆️", for: .normal)
-        upButton.addTarget(self, action: #selector(moveCategoryUp(_:)), for: .touchUpInside)
+        upButton.addTarget(self, action: #selector(moveViewUp(_:)), for: .touchUpInside)
 
         let downButton = UIButton(type: .system)
         downButton.setTitle("⬇️", for: .normal)
-        downButton.addTarget(self, action: #selector(moveCategoryDown(_:)), for: .touchUpInside)
+        downButton.addTarget(self, action: #selector(moveViewDown(_:)), for: .touchUpInside)
 
-        // Attach views
+        let deleteButton = UIButton(type: .system)
+        deleteButton.setTitle("🗑", for: .normal)
+        deleteButton.addTarget(self, action: #selector(deleteCategory(_:)), for: .touchUpInside)
+
+        // Compose
         horizontalStack.addArrangedSubview(categoryLabel)
         horizontalStack.addArrangedSubview(upButton)
         horizontalStack.addArrangedSubview(downButton)
         horizontalStack.addArrangedSubview(deleteButton)
 
-        categoryView.addArrangedSubview(horizontalStack)
-
-        // Save categoryView with tag or reference if needed
-        categoryStackView.addArrangedSubview(categoryView)
+        // Add to main stack
+        categoryStackView.addArrangedSubview(horizontalStack)
     }
 
     private func showAlert(message: String) {
@@ -129,53 +119,51 @@ class AddCategoryViewController: UIViewController {
     }
 
     func didAddItemToCategory(itemName: String, price: Double, category: String) {
-        for case let categoryView as UIStackView in categoryStackView.arrangedSubviews {
-            guard let horizontalStack = categoryView.arrangedSubviews.first as? UIStackView,
-                  let categoryLabel = horizontalStack.arrangedSubviews.first as? UILabel,
-                  categoryLabel.text == category else { continue }
+        let itemStack = UIStackView()
+        itemStack.axis = .horizontal
+        itemStack.spacing = 6
+        itemStack.alignment = .center
 
-            let itemStack = UIStackView()
-            itemStack.axis = .horizontal
-            itemStack.spacing = 6
-            itemStack.alignment = .center
+        let itemLabel = UILabel()
+        itemLabel.text = "\(itemName) - $\(String(format: "%.2f", price))"
+        itemLabel.font = UIFont.systemFont(ofSize: 14)
+        itemLabel.textColor = .darkGray
+        itemLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
 
-            let itemLabel = UILabel()
-            itemLabel.text = "\(itemName) - $\(String(format: "%.2f", price))"
-            itemLabel.font = UIFont.systemFont(ofSize: 14)
-            itemLabel.textColor = .darkGray
-            itemLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        let upItemBtn = UIButton(type: .system)
+        upItemBtn.setTitle("⬆️", for: .normal)
+        upItemBtn.addTarget(self, action: #selector(moveViewUp(_:)), for: .touchUpInside)
 
-            let deleteItemBtn = UIButton(type: .system)
-            deleteItemBtn.setTitle("❌", for: .normal)
-            deleteItemBtn.addTarget(self, action: #selector(deleteItem(_:)), for: .touchUpInside)
+        let downItemBtn = UIButton(type: .system)
+        downItemBtn.setTitle("⬇️", for: .normal)
+        downItemBtn.addTarget(self, action: #selector(moveViewDown(_:)), for: .touchUpInside)
 
-            itemStack.addArrangedSubview(itemLabel)
-            itemStack.addArrangedSubview(deleteItemBtn)
+        let deleteItemBtn = UIButton(type: .system)
+        deleteItemBtn.setTitle("❌", for: .normal)
+        deleteItemBtn.addTarget(self, action: #selector(deleteItem(_:)), for: .touchUpInside)
 
-            categoryView.addArrangedSubview(itemStack)
-            return
-        }
+        itemStack.addArrangedSubview(itemLabel)
+        itemStack.addArrangedSubview(upItemBtn)
+        itemStack.addArrangedSubview(downItemBtn)
+        itemStack.addArrangedSubview(deleteItemBtn)
 
-        // If no category found, create it
-        addCategoryToScrollView(category)
-        didAddItemToCategory(itemName: itemName, price: price, category: category)
+        categoryStackView.addArrangedSubview(itemStack)
     }
     
-    @objc private func handleDeleteCategory(_ sender: UIButton) {
-        guard let horizontalStack = sender.superview as? UIStackView,
-              let categoryView = horizontalStack.superview as? UIStackView,
-              let categoryLabel = horizontalStack.arrangedSubviews.first as? UILabel,
-              let categoryName = categoryLabel.text else { return }
+    @objc private func deleteCategory(_ sender: UIButton) {
+        guard let stack = sender.superview as? UIStackView,
+              let label = stack.arrangedSubviews.first as? UILabel,
+              let name = label.text else { return }
 
         let alert = UIAlertController(title: "Delete Category",
-                                      message: "Delete \"\(categoryName)\"?",
+                                      message: "Delete \"\(name)\"?",
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-            self.categoryStackView.removeArrangedSubview(categoryView)
-            categoryView.removeFromSuperview()
+            self.categoryStackView.removeArrangedSubview(stack)
+            stack.removeFromSuperview()
 
-            if let index = self.categories.firstIndex(of: categoryName) {
+            if let index = self.categories.firstIndex(of: name) {
                 self.categories.remove(at: index)
                 UserDefaults.standard.set(self.categories, forKey: "savedCategories")
                 self.delegate?.didUpdateCategories(self.categories)
@@ -185,43 +173,28 @@ class AddCategoryViewController: UIViewController {
     }
 
     @objc private func deleteItem(_ sender: UIButton) {
-        guard let itemStack = sender.superview as? UIStackView,
-              let categoryView = itemStack.superview as? UIStackView else {
-            print("❌ Failed to delete item - view hierarchy mismatch")
-            return
-        }
-
-        categoryView.removeArrangedSubview(itemStack)
-        itemStack.removeFromSuperview()
+        guard let stack = sender.superview as? UIStackView else { return }
+        categoryStackView.removeArrangedSubview(stack)
+        stack.removeFromSuperview()
     }
     
-    @objc private func moveCategoryUp(_ sender: UIButton) {
-        guard let horizontalStack = sender.superview as? UIStackView,
-              let categoryView = horizontalStack.superview as? UIStackView,
-              let index = categoryStackView.arrangedSubviews.firstIndex(of: categoryView),
+    @objc private func moveViewUp(_ sender: UIButton) {
+        guard let view = sender.superview as? UIStackView,
+              let index = categoryStackView.arrangedSubviews.firstIndex(of: view),
               index > 0 else { return }
 
-        categoryStackView.removeArrangedSubview(categoryView)
-        categoryView.removeFromSuperview()
-        categoryStackView.insertArrangedSubview(categoryView, at: index - 1)
-
-        categories.swapAt(index, index - 1)
-        UserDefaults.standard.set(categories, forKey: "savedCategories")
-        delegate?.didUpdateCategories(categories)
+        categoryStackView.removeArrangedSubview(view)
+        view.removeFromSuperview()
+        categoryStackView.insertArrangedSubview(view, at: index - 1)
     }
-    
-    @objc private func moveCategoryDown(_ sender: UIButton) {
-        guard let horizontalStack = sender.superview as? UIStackView,
-              let categoryView = horizontalStack.superview as? UIStackView,
-              let index = categoryStackView.arrangedSubviews.firstIndex(of: categoryView),
+
+    @objc private func moveViewDown(_ sender: UIButton) {
+        guard let view = sender.superview as? UIStackView,
+              let index = categoryStackView.arrangedSubviews.firstIndex(of: view),
               index < categoryStackView.arrangedSubviews.count - 1 else { return }
 
-        categoryStackView.removeArrangedSubview(categoryView)
-        categoryView.removeFromSuperview()
-        categoryStackView.insertArrangedSubview(categoryView, at: index + 1)
-
-        categories.swapAt(index, index + 1)
-        UserDefaults.standard.set(categories, forKey: "savedCategories")
-        delegate?.didUpdateCategories(categories)
+        categoryStackView.removeArrangedSubview(view)
+        view.removeFromSuperview()
+        categoryStackView.insertArrangedSubview(view, at: index + 1)
     }
 }
