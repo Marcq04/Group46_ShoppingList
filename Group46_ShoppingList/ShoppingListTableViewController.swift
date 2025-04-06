@@ -7,89 +7,80 @@
 import UIKit
 
 class ShoppingListTableViewController: UITableViewController, AddItemDelegate, AddItemToCategoryDelegate, AddCategoryDelegate {
-    
+
     var categories: [String] = []
-    
+
     func didUpdateCategories(_ categories: [String]) {
         self.categories = categories
         updateCategoryStackView()
     }
-    
-    func didAddItemToCategory(itemName: String, price: Double) {
-        print("✅ Item added to category: \(itemName) - $\(price)")
+
+    func didAddItemToCategory(itemName: String, price: Double, category: String) {
+        if let index = shoppingList.firstIndex(where: { $0.name == itemName && $0.price == price }) {
+            shoppingList[index].category = category
+            print("✅ Item updated with category: \(shoppingList[index])")
+            tableView.reloadData()
+        }
     }
 
-    var shoppingList: [(name: String, price: Double)] = [] // Store shopping list items
+    var shoppingList: [(name: String, price: Double, category: String?)] = [] // Added category
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddItem))
         view.addSubview(categoryStackView)
-            categoryStackView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                categoryStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                categoryStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                categoryStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
-            ])
+        categoryStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            categoryStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            categoryStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            categoryStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
     }
 
     @objc func goToAddItem(_ sender: Any?) {
         performSegue(withIdentifier: "goToAddItem", sender: self)
     }
-    
-    
-    // MARK: - Table View Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // Ensure there's at least 1 section
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoppingList.count // Show the correct number of items
+        return shoppingList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) // ✅ Updated Identifier
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath)
+
         let item = shoppingList[indexPath.row]
-        cell.textLabel?.text = "\(item.name) - $\(String(format: "%.2f", item.price))"
-        
+        if let category = item.category {
+            cell.textLabel?.text = "\(item.name) - $\(String(format: "%.2f", item.price)) - \(category)"
+        } else {
+            cell.textLabel?.text = "\(item.name) - $\(String(format: "%.2f", item.price))"
+        }
+
         return cell
     }
 
-    // ✅ MARK: - Enable Swipe-to-Delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("🗑 Deleting item: \(shoppingList[indexPath.row].name)") // Debugging
-
-            // Remove item from the shopping list
+            print("🗑 Deleting item: \(shoppingList[indexPath.row].name)")
             shoppingList.remove(at: indexPath.row)
-            
-            // Delete row from table view with animation
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-    // ✅ MARK: - Alternative: Swipe Delete Button
+
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            print("🗑 Swipe Delete item: \(self.shoppingList[indexPath.row].name)") // Debugging
-            
-            // Remove item from array
+            print("🗑 Swipe Delete item: \(self.shoppingList[indexPath.row].name)")
             self.shoppingList.remove(at: indexPath.row)
-            
-            // Delete the row from the table view
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
             completionHandler(true)
         }
-        
         deleteAction.backgroundColor = .red
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-
-    // MARK: - Delegate Connection
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToAddItem",
@@ -97,43 +88,25 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate, A
             addItemVC.delegate = self
         } else if segue.identifier == "goToAddCategory",
                   let addCategoryVC = segue.destination as? AddCategoryViewController,
-                  let selectedItem = sender as? (name: String, price: Double) {
-                print("📂 Passing categories: \(categories)") // Debugging
-            
-                addCategoryVC.categories = categories // ✅ Pass current categories
-                addCategoryVC.itemDelegate = self
-                addCategoryVC.selectedItem = selectedItem // Pass the selected item
+                  let selectedItem = sender as? (name: String, price: Double, category: String?) {
+            print("📂 Passing categories: \(categories)")
+            addCategoryVC.categories = categories
+            addCategoryVC.itemDelegate = self
+            addCategoryVC.selectedItem = (selectedItem.name, selectedItem.price) // Create a tuple without category
         }
     }
 
-
-    // MARK: - Receive Added Item
-    func didAddItem(name: String, price: Double) {
-        print("🛒 Received item: \(name) - $\(price)") // Debugging
-
-        shoppingList.append((name, price)) // Add item to list
-        tableView.reloadData() // Refresh table view
+    func didAddItem(name: String, price: Double, category: String) {
+        print("🛒 Received item: \(name) - $\(price) - Category: \(category)")
+        shoppingList.append((name, price, category))
+        tableView.reloadData()
     }
-    // MARK: - goToAddCategory
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = shoppingList[indexPath.row]
-            performSegue(withIdentifier: "goToAddCategory", sender: selectedItem)
-        /*
-        let itemName = selectedItem.name
-        let itemPrice = selectedItem.price
-
-        print("🛍 Selected item: \(itemName) - $\(itemPrice)")
-
-        if let addCategoryVC = storyboard?.instantiateViewController(withIdentifier: "AddCategoryViewController") as? AddCategoryViewController {
-                addCategoryVC.itemDelegate = self
-                addCategoryVC.didAddItemToCategory(itemName: itemName, price: itemPrice) // ✅ Add item immediately
-                navigationController?.pushViewController(addCategoryVC, animated: true)
-            }
-         */
+        performSegue(withIdentifier: "goToAddCategory", sender: selectedItem)
     }
-    
-    // MARK: - update category stack view
-    
+
     private let categoryStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -142,7 +115,7 @@ class ShoppingListTableViewController: UITableViewController, AddItemDelegate, A
         stackView.distribution = .fillEqually
         return stackView
     }()
-    
+
     private func updateCategoryStackView() {
         categoryStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for category in categories {
