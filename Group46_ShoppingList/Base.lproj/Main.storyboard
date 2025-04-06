@@ -160,30 +160,90 @@
                                             <action selector="dropDownAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Upt-oH-3zd"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="857-x5-JQp">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeN-Qj-9f7">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Meat"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Meat">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                        </state>
                                         <connections>
-                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1w-Mb-a9i"/>
+                                            <action selector="Meat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aTy-cf-kdH"/>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lx4-Nm-6H6"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0n-42-ImQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Vegetables">
+                                            <color key="titleColor" systemColor="systemGreenColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Vegetables:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3y9-5A-OLS"/>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pac-9l-IXy"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrj-q6-asf">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                        <color key="tintColor" systemColor="systemBrownColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Drinks">
+                                            <color key="titleColor" systemColor="systemBrownColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Drinks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1V9-bt-0Vq"/>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2e4-QG-jKR"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbx-wa-gMB">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Dairy">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Dairy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4aG-mI-FlA"/>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8zV-Gs-iTX"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWY-rg-SC2">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemYellowColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Bakery"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Bakery">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="Bakery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LqV-FL-KNe"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8RL-UX-QKB"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaO-f0-98F">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Snacks">
+                                            <color key="titleColor" systemColor="systemYellowColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Snacks:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FjI-aW-qHV"/>
+                                            <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="igB-H6-Nff"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdA-8I-iv4">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
                                         <color key="tintColor" systemColor="systemBlueColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Frozen Foods"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Frozen Foods">
+                                            <color key="titleColor" systemColor="linkColor"/>
+                                        </state>
                                         <connections>
+                                            <action selector="FrozenFoods:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zOz-wb-FrT"/>
                                             <action selector="typeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pPL-p2-wSw"/>
                                         </connections>
                                     </button>
@@ -204,216 +264,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm1-5I-ZyB">
-                                <rect key="frame" x="93" y="439" width="124" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <mutableString key="text">+ 0.13% of price
-//  AddItemViewController.swift
-//  Group46_ShoppingList
-//
-//  Created by Marcus Quitiquit on 2025-02-15.
-//
-
-import UIKit
-
-protocol AddItemDelegate: AnyObject {
-    func didAddItem(name: String, price: Double)
-}
-
-class AddItemViewController: UIViewController {
-
-    @IBOutlet weak var nameInput: UITextField!
-    @IBOutlet weak var priceInput: UITextField!
-    @IBOutlet weak var taxLabel: UILabel! // Label for tax amount
-    @IBOutlet weak var fullPriceLabel: UILabel! // Label for full price
-    @IBOutlet weak var dropDownButton: UIButton!
-    @IBOutlet var typeButtons: [UIButton]!
-    
-    weak var delegate: AddItemDelegate?  // Delegate to pass data back
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Debugging: Check if taxLabel and fullPriceLabel are nil
-        print("🔍 Debug: taxLabel is \(taxLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-        print("🔍 Debug: fullPriceLabel is \(fullPriceLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-
-        // Ensure tax and full price labels are set to default values
-        taxLabel?.text = "Tax: $0.00"
-        fullPriceLabel?.text = "Full Price: $0.00"
-        
-        // Add target to update price details dynamically as user types
-        priceInput.addTarget(self, action: #selector(updatePriceDetails), for: .editingChanged)
-    }
-    
-    @objc func updatePriceDetails() {
-        guard let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            taxLabel?.text = "Tax: $0.00"
-            fullPriceLabel?.text = "Full Price: $0.00"
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Price: \(price), Tax: \(String(format: "%.2f", taxAmount)), Full Price: \(String(format: "%.2f", totalPrice))")
-
-        // Update the labels separately
-        taxLabel?.text = "Tax: $\(String(format: "%.2f", taxAmount))"
-        fullPriceLabel?.text = "Full Price: $\(String(format: "%.2f", totalPrice))"
-    }
-
-    func showTypeButtons() {
-        typeButtons.forEach { button in
-            button.isHidden = !button.isHidden
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func dropDownAction(_ sender: Any) {
-        showTypeButtons()
-    }
-    
-    @IBAction func typeButtonAction(_ sender: UIButton) {
-        showTypeButtons()
-    }
-    
-    @IBAction func add_Item(_ sender: Any) {
-        guard let name = nameInput.text, !name.isEmpty,
-              let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            showAlert(message: "Please enter a valid item name and price.")
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
-
-        // Pass the data back using delegate with updated total price
-        delegate?.didAddItem(name: name, price: totalPrice)
-        
-        // Navigate back to Shopping List screen
-        navigationController?.popViewController(animated: true)
-    }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-
-//  AddItemViewController.swift
-//  Group46_ShoppingList
-//
-//  Created by Marcus Quitiquit on 2025-02-15.
-//
-
-import UIKit
-
-protocol AddItemDelegate: AnyObject {
-    func didAddItem(name: String, price: Double)
-}
-
-class AddItemViewController: UIViewController {
-
-    @IBOutlet weak var nameInput: UITextField!
-    @IBOutlet weak var priceInput: UITextField!
-    @IBOutlet weak var taxLabel: UILabel! // Label for tax amount
-    @IBOutlet weak var fullPriceLabel: UILabel! // Label for full price
-    @IBOutlet weak var dropDownButton: UIButton!
-    @IBOutlet var typeButtons: [UIButton]!
-    
-    weak var delegate: AddItemDelegate?  // Delegate to pass data back
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Debugging: Check if taxLabel and fullPriceLabel are nil
-        print("🔍 Debug: taxLabel is \(taxLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-        print("🔍 Debug: fullPriceLabel is \(fullPriceLabel == nil ? "NIL ❌" : "CONNECTED ✅")")
-
-        // Ensure tax and full price labels are set to default values
-        taxLabel?.text = "Tax: $0.00"
-        fullPriceLabel?.text = "Full Price: $0.00"
-        
-        // Add target to update price details dynamically as user types
-        priceInput.addTarget(self, action: #selector(updatePriceDetails), for: .editingChanged)
-    }
-    
-    @objc func updatePriceDetails() {
-        guard let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            taxLabel?.text = "Tax: $0.00"
-            fullPriceLabel?.text = "Full Price: $0.00"
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Price: \(price), Tax: \(String(format: "%.2f", taxAmount)), Full Price: \(String(format: "%.2f", totalPrice))")
-
-        // Update the labels separately
-        taxLabel?.text = "Tax: $\(String(format: "%.2f", taxAmount))"
-        fullPriceLabel?.text = "Full Price: $\(String(format: "%.2f", totalPrice))"
-    }
-
-    func showTypeButtons() {
-        typeButtons.forEach { button in
-            button.isHidden = !button.isHidden
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func dropDownAction(_ sender: Any) {
-        showTypeButtons()
-    }
-    
-    @IBAction func typeButtonAction(_ sender: UIButton) {
-        showTypeButtons()
-    }
-    
-    @IBAction func add_Item(_ sender: Any) {
-        guard let name = nameInput.text, !name.isEmpty,
-              let priceText = priceInput.text, let price = Double(priceText), price &gt; 0 else {
-            showAlert(message: "Please enter a valid item name and price.")
-            return
-        }
-        
-        let taxRate = 0.13
-        let taxAmount = price * taxRate
-        let totalPrice = price + taxAmount
-        
-        print("✅ Adding item: \(name) - Original Price: $\(price) | Tax: $\(String(format: "%.2f", taxAmount)) | Total Price: $\(String(format: "%.2f", totalPrice))")
-
-        // Pass the data back using delegate with updated total price
-        delegate?.didAddItem(name: name, price: totalPrice)
-        
-        // Navigate back to Shopping List screen
-        navigationController?.popViewController(animated: true)
-    }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-}
-sas</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price + 0.13% of price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92e-Jg-ZPE">
-                                <rect key="frame" x="190" y="497" width="167" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-lj-cbi">
                                 <rect key="frame" x="0.0" y="483.33333333333331" width="393" height="49.333333333333314"/>
                                 <attributedString key="attributedText">
@@ -469,16 +319,17 @@ sas</mutableString>
                     <navigationItem key="navigationItem" id="DvO-mj-djp"/>
                     <connections>
                         <outlet property="dropDownButton" destination="CGK-mp-Vh7" id="Zcm-kQ-lTA"/>
-                        <outlet property="fullPriceLabel" destination="B6d-lj-cbi" id="jYq-L7-EzY"/>
+                        <outlet property="fullPriceLabel" destination="B6d-lj-cbi" id="Tlr-Jp-eUC"/>
                         <outlet property="nameInput" destination="J1W-kz-ZrQ" id="Ohz-VM-SQx"/>
                         <outlet property="priceInput" destination="61u-wH-amB" id="exi-FI-o2u"/>
-
-                        <outletCollection property="typeButtons" destination="857-x5-JQp" collectionClass="NSMutableArray" id="AEh-Iv-pfZ"/>
-
-                        <outlet property="taxLabel" destination="tbP-yQ-87d" id="16T-CI-ZCd"/>
-
+                        <outlet property="taxLabel" destination="tbP-yQ-87d" id="Hhn-Lt-OaU"/>
                         <outletCollection property="typeButtons" destination="dWY-rg-SC2" collectionClass="NSMutableArray" id="kW2-cg-oWw"/>
                         <outletCollection property="typeButtons" destination="IdA-8I-iv4" collectionClass="NSMutableArray" id="7B4-7B-QY6"/>
+                        <outletCollection property="typeButtons" destination="mbx-wa-gMB" collectionClass="NSMutableArray" id="lSb-YC-Nj3"/>
+                        <outletCollection property="typeButtons" destination="yrj-q6-asf" collectionClass="NSMutableArray" id="3Po-TC-zmt"/>
+                        <outletCollection property="typeButtons" destination="h0n-42-ImQ" collectionClass="NSMutableArray" id="QoQ-o6-u6E"/>
+                        <outletCollection property="typeButtons" destination="JaO-f0-98F" collectionClass="NSMutableArray" id="hUz-4v-mIr"/>
+                        <outletCollection property="typeButtons" destination="qeN-Qj-9f7" collectionClass="NSMutableArray" id="8s1-cT-6H8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -574,12 +425,9 @@ sas</mutableString>
     </scenes>
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
-<<<<<<< Updated upstream
-=======
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
->>>>>>> Stashed changes
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -589,33 +437,24 @@ sas</mutableString>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-<<<<<<< Updated upstream
-=======
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
->>>>>>> Stashed changes
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-<<<<<<< Updated upstream
-=======
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
->>>>>>> Stashed changes
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-<<<<<<< Updated upstream
-=======
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
->>>>>>> Stashed changes
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
